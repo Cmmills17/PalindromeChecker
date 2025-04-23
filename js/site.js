@@ -1,22 +1,51 @@
-function displayMessage() {
+// get message that was entered
+function getValues() {
+    let alertDiv = document.getElementById('alertDiv');
+    alertDiv.classList.add('invisible');
+    //find the input id="msgInput" Element
+    let inputElement = document.getElementById('msgInput');
 
-    //get the <input /> element from the page
-    let inputElement = document.getElementById('messageInput')
-    //inputElement = <input id="messageInput" class="form-control" stlye="max-width: 16rem" placeholder="Enter a Message" />
-
-    //get the text that was typed into the input element
-    let message = inputElement.value;
+    //get what the user typed out of the <input />
+    let userString = inputElement.value;
 
 
-    //use alert() to show the text that was typed
-    Swal.fire(
-        {
-            backdrop: false,
-            title: 'App Name',
-            text: message,
-        }
-    );
+    // palindrome check the message
+    let palString = checkForPalindrome(userString);
+
+
+    displayResults(palString);
 
 
 }
 
+//check the message
+function checkForPalindrome(message) {
+    message = message.replace(/[ \p{P}]/gu, '').toLowerCase();
+    let palWord = '';
+
+    for (let i = message.length - 1; i >= 0; i -= 1) {
+
+        let char = message[i];
+
+        palWord = palWord + char;
+    }
+
+    if (message == palWord) {
+        return true;
+    } else {
+        return false;
+
+    }
+
+
+
+}
+
+function displayResults(checkedMessage) {
+    let paragraphTag = document.getElementById('alertMsg');
+    paragraphTag.innerHTML = `Your Palindrome is: <b>${checkedMessage}`;
+
+    let alertDiv = document.getElementById('alertDiv');
+    alertDiv.classList.remove('invisible');
+
+}
