@@ -23,7 +23,7 @@ function checkForPalindrome(message) {
 
     for (let i = normMessage.length - 1; i >= 0; i -= 1) {
 
-        let char = message[i];
+        let char = normMessage[i];
 
         palWord = palWord + char;
     }
@@ -40,7 +40,7 @@ function displayResults(checkedMessage) {
     // find alertDiv
     let alertDiv = document.getElementById('alertDiv');
     // remove "invisible" class
-    alertDiv.classList.remove('invisible');
+    alertDiv.classList.remove('invisible', 'alert-success', 'alert-danger');
 
     // find alertHeading
     let heading = document.getElementById('alertHeading');
@@ -50,15 +50,22 @@ function displayResults(checkedMessage) {
     if (checkedMessage == true) {
         // set alertHeading text to "success"
         heading.innerText = 'Well Done!';
+
         // set alertMsg text to "thats a palindrome"
         body.innerHTML = 'That <b>is</b> a Palindrome!';
+
+        // add the class 'alert-success' to alertDiv
+        alertDiv.classList.add('alert-success');
+
+
     } else {
         // set alertHeading text to "uh oh"
         heading.innerText = 'Ohh No';
+
         // set alertMsg text to 'thats not a palindrome'
         body.innerHTML = 'That is <b>not</b> a Palindrome';
+
+        // add the class 'alert-danger' to alertDiv
+        alertDiv.classList.add('alert-danger');
     }
-
-
-
 }
