@@ -8,10 +8,10 @@ function getValues() {
 
 
     // palindrome check the message
-    let palString = checkForPalindrome(userString);
+    let resultObj = checkForPalindrome(userString);
 
     //send to display
-    displayResults(palString);
+    displayResults(resultObj);
 }
 
 //check the message
@@ -28,31 +28,45 @@ function checkForPalindrome(message) {
         palWord = palWord + char;
     }
 
-    if (normMessage == palWord) {
-        return true;
+    let result = {
+        isPalindrome: normMessage == palWord,
+        reversedMessage: palWord
+    };
 
-    } else {
-        return false;
-    }
+    return result;
+
+    /*
+
+Types of data in functions:
+
+    array, e.g. [1 ,2 ,3]
+    strings, e.g. 'hello world'
+    boolean, e.g. true or false
+    number, e.g. 10
+    object, e.g. 
+
+    */
 }
+
+
 // display the message
 function displayResults(checkedMessage) {
-    // find alertDiv
+
     let alertDiv = document.getElementById('alertDiv');
-    // remove "invisible" class
+
     alertDiv.classList.remove('invisible', 'alert-success', 'alert-danger');
 
-    // find alertHeading
+
     let heading = document.getElementById('alertHeading');
-    // find alertmsg
+
     let body = document.getElementById('alertMsg')
 
-    if (checkedMessage == true) {
+    if (checkedMessage.isPalindrome == true) {
         // set alertHeading text to "success"
-        heading.innerText = 'Well Done!';
+        heading.innerHTML = 'Well Done! That <b>is</b> a Palindrome';
 
         // set alertMsg text to "thats a palindrome"
-        body.innerHTML = 'That <b>is</b> a Palindrome!';
+        body.innerHTML = `Your message reversed is: <b>${checkedMessage.reversedMessage}</b>`;
 
         // add the class 'alert-success' to alertDiv
         alertDiv.classList.add('alert-success');
@@ -60,10 +74,10 @@ function displayResults(checkedMessage) {
 
     } else {
         // set alertHeading text to "uh oh"
-        heading.innerText = 'Ohh No';
+        heading.innerHTML = 'Ohh No, That is <b>not</b> a Palindrome';
 
         // set alertMsg text to 'thats not a palindrome'
-        body.innerHTML = 'That is <b>not</b> a Palindrome';
+        body.innerHTML = `Your message reversed is: <b>${checkedMessage.reversedMessage}</b>`;
 
         // add the class 'alert-danger' to alertDiv
         alertDiv.classList.add('alert-danger');
