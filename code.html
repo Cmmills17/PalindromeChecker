@@ -76,18 +76,87 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-function displayMessage() {
-    let inputElement = document.getElementById('messageInput');                          
-    let message = inputElement.value;
-        
-    Swal.fire(
-        {
-            backdrop: false,
-            title: 'PalinCheck',
-            text: message,
-        }
-    );                                               
-}                       
+                        
+                        function getValues() {                    
+                            let inputElement = document.getElementById('msgInput');
+                            
+                            let userString = inputElement.value;
+                        
+                            if (userString < 2) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops',
+                                    text: 'Ypur loan details appear to be invalid. Please double check your inputs.'
+                                })
+                            } else {
+                               
+                                let resultObj = checkForPalindrome(userString);
+                        
+                               
+                                displayResults(resultObj);
+                            }
+                        
+                        
+                        }
+                        
+                        
+                        function checkForPalindrome(message) {
+                        
+                            normMessage = message.replace(/[ \p{P}]/gu, '').toLowerCase();
+                        
+                            let palWord = '';
+                        
+                            for (let i = normMessage.length - 1; i >= 0; i -= 1) {
+                        
+                                let char = normMessage[i];
+                        
+                                palWord = palWord + char;
+                            }
+                        
+                            let result = {
+                                isPalindrome: normMessage == palWord,
+                                reversedMessage: palWord
+                            };
+                        
+                            return result;
+                        
+                            /*
+                        }
+                        
+                        
+                        
+                        function displayResults(checkedMessage) {
+                        
+                            let alertDiv = document.getElementById('alertDiv');
+                        
+                            alertDiv.classList.remove('invisible', 'alert-success', 'alert-danger');
+                        
+                        
+                            let heading = document.getElementById('alertHeading');
+                        
+                            let body = document.getElementById('alertMsg')
+                        
+                            if (checkedMessage.isPalindrome == true) {
+                                
+                                heading.innerHTML = 'Well Done! That <b>is</b> a Palindrome';
+                        
+                                
+                                body.innerHTML = `Your message reversed is: <b>${checkedMessage.reversedMessage}</b>`;
+                        
+                              
+                                alertDiv.classList.add('alert-success');
+                        
+                        
+                            } else {
+                                
+                                heading.innerHTML = 'Ohh No, That is <b>not</b> a Palindrome';
+                        
+
+                                body.innerHTML = `Your message reversed is: <b>${checkedMessage.reversedMessage}</b>`;
+                        
+                                alertDiv.classList.add('alert-danger');
+                            }
+                        }                   
                     </code>
 
                 </pre>
