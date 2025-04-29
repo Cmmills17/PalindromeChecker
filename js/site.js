@@ -6,12 +6,21 @@ function getValues() {
     //get what the user typed out of the <input />
     let userString = inputElement.value;
 
+    if (userString < 2) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops',
+            text: 'Ypur loan details appear to be invalid. Please double check your inputs.'
+        })
+    } else {
+        // palindrome check the message
+        let resultObj = checkForPalindrome(userString);
 
-    // palindrome check the message
-    let resultObj = checkForPalindrome(userString);
+        //send to display
+        displayResults(resultObj);
+    }
 
-    //send to display
-    displayResults(resultObj);
+
 }
 
 //check the message
