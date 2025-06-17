@@ -86,7 +86,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Oops',
-                                    text: 'Ypur loan details appear to be invalid. Please double check your inputs.'
+                                    text: 'Your loan details appear to be invalid. Please double check your inputs.'
                                 })
                             } else {
                                
@@ -166,12 +166,26 @@
                 <p>The code is structured in three functions</p>
 
                 <h5>
-                    <code>displayMessage()</code>
+                    <code>getValue()</code>
                 </h5>
                 <p>
-                    The <code>displayMessage</code> function reads the text from the input and displays it in a Sweet
-                    Alert popup
+                    The <code>getValues</code> function reads the text from the input and checks to see if the input is valid. If the input is invalid, an alert will pop up showing that there was an invalid input.
                 </p>
+
+                <h5>
+                    <code>checkForPalindrome()</code>
+                </h5>
+                <p>
+                    The <code>checkForPalindrome</code> function is passed the information from the <code>getValues</code> function and the message is normalized and checked to see if it is a palindrome.
+                </p>
+
+                <h5>
+                    <code>displayResults()</code>
+                </h5>
+                <p>
+                    The <code>displayResults</code> function is then passed the checked message and shows a successful palindrome or a failed palindrome
+                </p>
+
             </div>
         </div>
 
